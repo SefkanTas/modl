@@ -6,6 +6,12 @@ public class RockPaperScissors {
     }
 
     Result play(Play p1, Play p2){
-        return Result.LOST;
+        if(p1 == p2){
+            return Result.TIE;
+        }
+        if(p2 == Play.SCISSORS){
+            return Result.LOST;
+        }
+        return Result.WIN;
     }
 }
