@@ -61,7 +61,7 @@
     100%
   </span>
   <span class="absValue">
-    (7/ 7)
+    (11/ 11)
   </span>
 </td>
 </tr>
@@ -80,21 +80,33 @@
 <b class="fc"><i>6</i>&nbsp;    }</b>
 <i>7</i>&nbsp;
 <i>8</i>&nbsp;    Result play(Play p1, Play p2){
-<b class="fc"><i>9</i>&nbsp;        if(p1 == p2){</b>
-<b class="fc"><i>10</i>&nbsp;            return Result.TIE;</b>
-<i>11</i>&nbsp;        }
-<b class="fc"><i>12</i>&nbsp;        if(p2 == Play.SCISSORS){</b>
-<b class="fc"><i>13</i>&nbsp;            return Result.LOST;</b>
-<i>14</i>&nbsp;        }
-<b class="fc"><i>15</i>&nbsp;        return Result.WIN;</b>
-<i>16</i>&nbsp;    }
-<i>17</i>&nbsp;}
+<i>9</i>&nbsp;
+<b class="fc"><i>10</i>&nbsp;        if(p1 == p2){</b>
+<b class="fc"><i>11</i>&nbsp;            return Result.TIE;</b>
+<i>12</i>&nbsp;        }
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;        if(p1 == Play.ROCK &amp;&amp; p2 == Play.SCISSORS){</b>
+<b class="fc"><i>15</i>&nbsp;            return Result.WIN;</b>
+<i>16</i>&nbsp;        }
+<i>17</i>&nbsp;
+<b class="fc"><i>18</i>&nbsp;        if(p1 == Play.PAPER &amp;&amp; p2 == Play.ROCK){</b>
+<b class="fc"><i>19</i>&nbsp;            return Result.WIN;</b>
+<i>20</i>&nbsp;        }
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;        if(p1 == Play.SCISSORS &amp;&amp; p2 == Play.PAPER){</b>
+<b class="fc"><i>23</i>&nbsp;            return Result.WIN;</b>
+<i>24</i>&nbsp;        }
+<i>25</i>&nbsp;
+<b class="fc"><i>26</i>&nbsp;        return Result.LOST;</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-09-17 16:14</div>
+    <div style="float:right;">generated on 2020-09-17 16:41</div>
 </div>
 </body>
 </html>
