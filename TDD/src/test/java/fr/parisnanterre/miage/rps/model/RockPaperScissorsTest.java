@@ -79,4 +79,6 @@ public class RockPaperScissorsTest {
     public void testLostPlay(Play p1, Play p2){
         assertEquals(rps.play(p1, p2), Result.LOST);
     }
+
+
 }
