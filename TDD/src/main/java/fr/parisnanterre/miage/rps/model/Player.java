@@ -5,7 +5,7 @@ import java.util.List;
 public class Player {
 
     private String nom;
-    private Integer score;
+    private int score;
     private List<Play> mouvements;
 
     private int currentMouvIndex;
@@ -25,7 +25,7 @@ public class Player {
         return nom;
     }
 
-    public Integer getScore() {
+    public int getScore() {
         return score;
     }
 
@@ -43,6 +43,11 @@ public class Player {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public void resetMoveIndexAndScore(){
+        setScore(0);
+        currentMouvIndex = 0;
     }
 
 }

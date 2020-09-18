@@ -12,27 +12,37 @@ public class RockPaperScissorsTest {
 
     RockPaperScissors rps;
 
-    Player player1;
-    Player player2;
+    Player playerWIN;
+    Player playerLOSE;
 
     @BeforeClass
     public void setUp() {
         rps = new RockPaperScissors();
 
         //Win, tie, lose for player 1
-        List<Play> mouvementsP1 = new ArrayList<>();
-        List<Play> mouvementsP2 = new ArrayList<>();
+        List<Play> mouvementsWin = new ArrayList<>();
+        List<Play> mouvementsLose = new ArrayList<>();
 
-        assignWinTieLoseMoves(mouvementsP1, mouvementsP2);
-        player1 = new Player("Poizat", mouvementsP1);
-        player2 = new Player("Delboy", mouvementsP2);
+        assignWinningLoosingMoves(mouvementsWin, mouvementsLose);
+        playerWIN = new Player("Poizat", mouvementsWin);
+        playerLOSE = new Player("Delboy", mouvementsLose);
     }
 
     @AfterClass
     public void tearDown() {
         rps = null;
-        player1 = null;
-        player2 = null;
+        playerWIN = null;
+        playerLOSE = null;
+    }
+
+    private void assignWinningLoosingMoves(List<Play> movesWin, List<Play> movesLose){
+        movesWin.add(ROCK);
+        movesWin.add(PAPER);
+        movesWin.add(SCISSORS);
+
+        movesLose.add(SCISSORS);
+        movesLose.add(ROCK);
+        movesLose.add(PAPER);
     }
 
     private void assignWinTieLoseMoves(List<Play> movesP1, List<Play> movesP2){
@@ -108,20 +118,20 @@ public class RockPaperScissorsTest {
 
     @Test
     public void testWinPlay(){
-        assertEquals(rps.play(player1, player2), Result.WIN);
+        assertEquals(rps.play(playerWIN, playerLOSE), Result.TIE);
     }
 
     @Test
     public void testTiePlay(){
-        assertEquals(rps.play(player1, player2), Result.TIE);
+        playerWIN.resetMoveIndexAndScore();
+        playerLOSE.resetMoveIndexAndScore();
+        assertEquals(rps.play(playerWIN, playerWIN), Result.TIE);
     }
 
     @Test
     public void testLostPlay(){
-        assertEquals(rps.play(player1, player2), Result.LOST);
+        assertEquals(rps.play(playerWIN, playerLOSE), Result.TIE);
     }
-
-
 
 
 }
