@@ -35,9 +35,6 @@ public class Player {
 
     public Play getNextMove(){
         currentMouvIndex++;
-        // if(currentMouvIndex-1 > getNbMouvements()){
-            // TODO: 18/09/2020 throw exception
-        //}
         return mouvements.get(currentMouvIndex-1);
     }
 

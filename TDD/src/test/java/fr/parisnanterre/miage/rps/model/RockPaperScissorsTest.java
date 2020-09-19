@@ -12,37 +12,41 @@ public class RockPaperScissorsTest {
 
     RockPaperScissors rps;
 
-    Player playerWIN;
-    Player playerLOSE;
+    Player playerWin;
+    Player playerLose;
+    Player playerTie;
 
     @BeforeClass
     public void setUp() {
         rps = new RockPaperScissors();
 
-        //Win, tie, lose for player 1
         List<Play> mouvementsWin = new ArrayList<>();
         List<Play> mouvementsLose = new ArrayList<>();
 
-        assignWinningLoosingMoves(mouvementsWin, mouvementsLose);
-        playerWIN = new Player("Poizat", mouvementsWin);
-        playerLOSE = new Player("Delboy", mouvementsLose);
+        assignWinningMoves(mouvementsWin);
+        assignLoosingMoves(mouvementsLose);
+        playerWin = new Player("Poizat", mouvementsWin);
+        playerLose = new Player("Delbot", mouvementsLose);
+        playerTie = new Player("JFPP", mouvementsWin);
     }
 
     @AfterClass
     public void tearDown() {
         rps = null;
-        playerWIN = null;
-        playerLOSE = null;
+        playerWin = null;
+        playerLose = null;
     }
 
-    private void assignWinningLoosingMoves(List<Play> movesWin, List<Play> movesLose){
-        movesWin.add(ROCK);
-        movesWin.add(PAPER);
-        movesWin.add(SCISSORS);
+    private void assignWinningMoves(List<Play> moves){
+        moves.add(ROCK);
+        moves.add(PAPER);
+        moves.add(SCISSORS);
+    }
 
-        movesLose.add(SCISSORS);
-        movesLose.add(ROCK);
-        movesLose.add(PAPER);
+    private void assignLoosingMoves(List<Play> moves){
+        moves.add(SCISSORS);
+        moves.add(ROCK);
+        moves.add(PAPER);
     }
 
     private void assignWinTieLoseMoves(List<Play> movesP1, List<Play> movesP2){
@@ -113,24 +117,29 @@ public class RockPaperScissorsTest {
 
     @Test(dataProvider = "lostData")
     public void testLostPlay(Play p1, Play p2){
+
         assertEquals(rps.play(p1, p2), Result.LOST);
     }
 
     @Test
     public void testWinPlay(){
-        assertEquals(rps.play(playerWIN, playerLOSE), Result.TIE);
+        playerWin.resetMoveIndexAndScore();
+        playerLose.resetMoveIndexAndScore();
+        assertEquals(rps.play(playerWin, playerLose), Result.WIN);
     }
 
     @Test
     public void testTiePlay(){
-        playerWIN.resetMoveIndexAndScore();
-        playerLOSE.resetMoveIndexAndScore();
-        assertEquals(rps.play(playerWIN, playerWIN), Result.TIE);
+        playerWin.resetMoveIndexAndScore();
+        playerLose.resetMoveIndexAndScore();
+        assertEquals(rps.play(playerWin, playerTie), Result.TIE);
     }
 
     @Test
     public void testLostPlay(){
-        assertEquals(rps.play(playerWIN, playerLOSE), Result.TIE);
+        playerWin.resetMoveIndexAndScore();
+        playerLose.resetMoveIndexAndScore();
+        assertEquals(rps.play(playerLose, playerWin), Result.LOST);
     }
 
 
